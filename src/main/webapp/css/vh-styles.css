@@ -1,0 +1,15 @@
+.test{
+	font-family: monospace;
+	background-color: blue;
+}
+
+.doctor-header {
+	background-color: red;
+}
+
+.pharma-header{
+	background-color: green;
+}
+.user-header{
+	background-color: orange;
+}

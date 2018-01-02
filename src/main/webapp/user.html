@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/vh-styles.css">
+<script type="text/javascript" src="jquery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="config/env.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#file_upload").click(function() {
+			$("#ref").hide();
+			$("#upload").show();
+		});
+		$("#reference").click(function() {
+			$("#upload").hide();
+			$("#ref").show();
+		});
+	});
+
+	function uploadFile() {
+		var xhr = new XMLHttpRequest();
+		var fd = new FormData();
+		xhr.open("POST", url, true);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				// Every thing ok, file uploaded
+				console.log(xhr.responseText); // handle response.
+			}
+		};
+		fd.append("upload_file", $('fileinput'));
+		xhr.send(fd);
+	}
+</script>
+</head>
+
+<body>
+	<header class="user-header"> Welcome to virtual hospital </header>
+	<p>
+		Book Medicines
+
+		<button id="file_upload">Upload Prescription</button>
+		<button id="reference">Search recent prescriptions</button>
+	<div id="upload" hidden="true">
+
+		<form action="http://localhost:8080/Jersey2Spring/file/upload" method="post"
+			enctype="multipart/form-data">
+
+			<p>
+				Select a file : <input type="file" name="file" size="45" />
+			</p>
+
+			<input type="submit" value="Upload It" />
+		</form>
+
+	</div>
+
+	<div id="ref" hidden="true">
+		<input type="text">
+		<button>Submit</button>
+	</div>
+</body>
+</html>
